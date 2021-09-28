@@ -34,7 +34,7 @@ ExpressRoute 회로를 만드는 방법의 데모를 시청하려면 [Azure Expr
 
    ![Azure Portal - ExpressRoute 회로 만들기 메뉴](../media/create-expressroute-circuit-menu.png)
 
-3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, West US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;**을 선택합니다.
+3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, West US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;** 을 선택합니다.
 
    ![Azure Portal - ExpressRoute 만들기 기본 사항 탭](../media/expressroute-create-basic.png)
 
@@ -120,7 +120,7 @@ ExpressRoute 회로 서비스 공급자 프로비전 상태가 **프로비전 �
 
 ## 작업 4: 리소스 정리
 
-**삭제 **아이콘을 선택하여 ExpressRoute 회로를 삭제할 수 있습니다. 계속하기 전에 공급자 상태가 프로비전 안 됨인지 확인합니다.
+**삭제**아이콘을 선택하여 ExpressRoute 회로를 삭제할 수 있습니다. 계속하기 전에 공급자 상태가 프로비전 안 됨인지 확인합니다.
 
 ![Azure Portal - ExpressRoute 회로 삭제](../media/expressroute-circuit-delete.png)
 

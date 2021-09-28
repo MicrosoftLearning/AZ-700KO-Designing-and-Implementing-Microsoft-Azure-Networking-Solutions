@@ -70,15 +70,15 @@ New-AzResourceGroup -Name 'CreatePrivateEndpointQS-rg' -Location 'eastus'
  
 
 ```Azure PowerShell
-## 백 엔드 서브넷 구성을 만듭니다. ##
+## Create backend subnet config. ##
 
 $subnetConfig = New-AzVirtualNetworkSubnetConfig -Name myBackendSubnet -AddressPrefix 10.0.0.0/24```
 
-## Azure Bastion 서브넷을 만듭니다. ##
+## Create Azure Bastion subnet. ##
 
 $bastsubnetConfig = New-AzVirtualNetworkSubnetConfig -Name AzureBastionSubnet -AddressPrefix 10.0.1.0/24
 
-## 가상 네트워크를 만듭니다. ##
+## Create the virtual network. ##
 
 $parameters1 = @{
 
@@ -96,7 +96,7 @@ $parameters1 = @{
 
 $vnet = New-AzVirtualNetwork @parameters1
 
-## 배스천 호스트용 공용 IP 주소를 만듭니다. ##
+## Create public IP address for bastion host. ##
 
 $parameters2 = @{
 
@@ -114,7 +114,7 @@ $parameters2 = @{
 
 $publicip = New-AzPublicIpAddress @parameters2
 
-## 배스천 호스트를 만듭니다. ##
+## Create bastion host ##
 
 $parameters3 = @{
 
@@ -155,15 +155,15 @@ New-AzBastion @parameters3
 - Add-AzVMNetworkInterface
 
 ``` Azure PowerShell
-## 서버 관리자용 자격 증명과 암호를 설정합니다. ##
+## Set credentials for server admin and password. ##
 
 $cred = Get-Credential
 
-## 가상 네트워크 구성을 가져오는 명령을 실행합니다. ##
+## Command to get virtual network configuration. ##
 
 $vnet = Get-AzVirtualNetwork -Name myVNet -ResourceGroupName CreatePrivateEndpointQS-rg
 
-## VM용 네트워크 인터페이스를 만드는 명령을 실행합니다. ##
+## Command to create network interface for VM ##
 
 $parameters1 = @{
 
@@ -179,7 +179,7 @@ $parameters1 = @{
 
 $nicVM = New-AzNetworkInterface @parameters1
 
-## 가상 머신 구성을 만듭니다.##
+## Create a virtual machine configuration.##
 
 $parameters2 = @{
 
@@ -213,7 +213,7 @@ $vmConfig =
 
 New-AzVMConfig @parameters2 | Set-AzVMOperatingSystem -Windows @parameters3 | Set-AzVMSourceImage @parameters4 | Add-AzVMNetworkInterface -Id $nicVM.Id
 
-## 가상 머신을 만듭니다. ##
+## Create the virtual machine ##
 
 New-AzVM -ResourceGroupName 'CreatePrivateEndpointQS-rg' -Location 'eastus' -VM $vmConfig 
 
@@ -240,13 +240,13 @@ Azure의 아웃바운드 연결에 대한 자세한 내용은 아웃바운드 �
  
 
 ```Azure PowerShell
-## 변수에 웹앱을 추가합니다. <webapp-resource-group-name>은 웹앱의 리소스 그룹으로 바꿉니다. ##
+## Place web app into variable. Replace <webapp-resource-group-name> with the resource group of your webapp. ##
 
-## <your-webapp-name>은 웹앱 이름으로 바꿉니다. ##
+## Replace <your-webapp-name> with your webapp name ##
 
 $webapp = Get-AzWebApp -ResourceGroupName <webapp-resource-group-name> -Name <your-webapp-name>
 
-## 프라이빗 엔드포인트 연결을 만듭니다. ##
+## Create Private Endpoint connection. ##
 
 $parameters1 = @{
 
@@ -260,17 +260,17 @@ $parameters1 = @{
 
 $privateEndpointConnection = New-AzPrivateLinkServiceConnection @parameters1
 
-## 변수에 가상 네트워크를 추가합니다. ##
+## Place virtual network into variable. ##
 
 $vnet = Get-AzVirtualNetwork -ResourceGroupName 'CreatePrivateEndpointQS-rg' -Name 'myVNet'
 
-## 프라이빗 엔드포인트 네트워크 정책을 사용하지 않도록 설정합니다. ##
+## Disable private endpoint network policy ##
 
 $vnet.Subnets[0].PrivateEndpointNetworkPolicies = "Disabled"
 
 $vnet | Set-AzVirtualNetwork
 
-## 프라이빗 엔드포인트 만들기
+## Create private endpoint
 
 $parameters2 = @{
 
@@ -305,11 +305,11 @@ New-AzPrivateEndpoint @parameters2
 - New-AzPrivateDnsZoneGroup
 
 ```Azure PowerShell
-## 변수에 가상 네트워크를 추가합니다. ##
+## Place virtual network into variable. ##
 
 $vnet = Get-AzVirtualNetwork -ResourceGroupName 'CreatePrivateEndpointQS-rg' -Name 'myVNet'
 
-## 프라이빗 DNS 영역을 만듭니다. ##
+## Create private dns zone. ##
 
 $parameters1 = @{
 
@@ -321,7 +321,7 @@ $parameters1 = @{
 
 $zone = New-AzPrivateDnsZone @parameters1
 
-## DNS 네트워크 링크를 만듭니다. ##
+## Create dns network link. ##
 
 $parameters2 = @{
 
@@ -337,7 +337,7 @@ $parameters2 = @{
 
 $link = New-AzPrivateDnsVirtualNetworkLink @parameters2
 
-## DNS 구성을 만듭니다. ##
+## Create DNS configuration ##
 
 $parameters3 = @{
 
@@ -349,7 +349,7 @@ $parameters3 = @{
 
 $config = New-AzPrivateDnsZoneConfig @parameters3
 
-## DNS 영역 그룹을 만듭니다. ##
+## Create DNS zone group. ##
 
 $parameters4 = @{
 
@@ -390,18 +390,18 @@ New-AzPrivateDnsZoneGroup @parameters4
 - nslookup <your- webapp-name>.azurewebsites.net을 입력합니다. <your-webapp-name>은 이전 단계에서 만든 웹앱의 이름으로 바꿉니다. 아래 표시된 것과 유사한 메시지가 표시됩니다.
 
   ```| Azure PowerShell |
-  서버: UnKnown
+  Server: UnKnown
   
-  주소: 168.63.129.16
+  Address: 168.63.129.16
   
   Non-authoritative answer:
   
-  이름: mywebapp8675.privatelink.azurewebsites.net
+  Name: mywebapp8675.privatelink.azurewebsites.net
   
-  주소: 10.0.0.5
+  Address: 10.0.0.5
   
   Aliases: mywebapp8675.azurewebsites.net  
-
+  ```
 
 웹앱 이름에 대해 개인 IP 주소 **10.0.0.5**가 반환됩니다. 이 주소는 이전에 만든 가상 네트워크의 서브넷에 있습니다.
 

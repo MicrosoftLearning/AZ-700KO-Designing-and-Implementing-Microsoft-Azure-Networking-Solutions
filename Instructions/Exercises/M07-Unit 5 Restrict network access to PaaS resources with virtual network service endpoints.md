@@ -29,7 +29,7 @@ Exercise:
 
 2. 가상 네트워크를 검색한 후 결과에서 **가상 네트워크**를 선택합니다.
 
-3. **+** **만들기**를 선택합니다.
+3. **+ 만들기**를 선택합니다.
 
 4. 다음 정보를 입력하거나 선택합니다.
    ![그래픽 사용자 인터페이스, 텍스트, 애플리케이션 자동 생성된 설명](../media/create-virtual-network.png)
@@ -51,7 +51,7 @@ Exercise:
    | 서브넷 주소 범위 | 10.0.0.0/24 |
 
 6. **보안** 탭을 선택하고 다음 값을 입력합니다.
-   ![그래픽 사용자 인터페이스, 텍스트, 애플리케이션, 이메일 자동 생성된 설명](../media/ create-virtual-network-security.png)
+   ![그래픽 사용자 인터페이스, 텍스트, 애플리케이션, 이메일 자동 생성된 설명](../media/create-virtual-network-security.png)
 
    | **설정**     | **값** |
    | --------------- | --------- |
@@ -239,7 +239,7 @@ Exercise:
    | **설정**      | **값**                    |
    | ---------------- | ---------------------------- |
    | 구독     | 구독을 선택합니다.    |
-   | 가상 네트워크 | CoreServicesVNet**을 선택합니다.** |
+   | 가상 네트워크 | **CoreServicesVNet**을 선택합니다. |
    | 서브넷          | **프라이빗**을 선택합니다.          |
 
 5. **추가**를 선택합니다.
@@ -312,7 +312,7 @@ VM을 배포하려면 몇 분 정도 걸립니다. VM 생성이 완료되고 VM 
 6. ContosoWestPrivate VM에서 PowerShell을 사용하여 Azure 파일 공유를 Z 드라이브에 매핑합니다. 뒤에 나오는 명령을 실행하기 전에 <storage-account-key> 및 <storage-account-name>을 스토리지 계정 만들기 작업에서 입력 및 검색한 값으로 바꿉니다.
 
 ```Azure CLI
-$acctKey = ConvertTo-SecureString -String "<스토리지 계정 키>" -AsPlainText -Force
+$acctKey = ConvertTo-SecureString -String "<storage-account-key>" -AsPlainText -Force
 
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList "Azure\<storage-account-name>", $acctKey
 
