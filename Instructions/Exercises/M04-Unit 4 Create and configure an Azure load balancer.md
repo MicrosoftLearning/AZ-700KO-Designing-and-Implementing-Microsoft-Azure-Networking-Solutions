@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M04-단원 4 Azure Load Balancer 만들기 및 구성'
     module: '모듈 - Azure에서 HTTP(S)를 사용하지 않는 트래픽 부하 분산'

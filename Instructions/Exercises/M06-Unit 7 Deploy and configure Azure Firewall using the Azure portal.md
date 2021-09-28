@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M06-단원 7 Azure Portal을 사용하여 Azure Firewall 배포 및 구성'
     module: '모듈 - 네트워크 보안 설계 및 구현'
