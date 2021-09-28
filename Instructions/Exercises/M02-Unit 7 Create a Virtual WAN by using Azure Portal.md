@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M02-단원 7 Azure Portal을 사용하여 Virtual WAN 만들기'
     module: '모듈 - 하이브리드 네트워킹 설계 및 구현'
