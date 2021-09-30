@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M05-단원 4 Azure Application Gateway 배포'
     module: '모듈 - Azure에서 HTTP(S) 트래픽 부하 분산'
@@ -91,7 +91,7 @@ Azure의 경우, 만든 리소스 사이에서 통신하기 위해서는 가상 
 
 19. **수신기** 탭의 기타 설정에는 기본값을 적용합니다.
 
-    ![Azure Portal의 애플리케이션 게이트웨이 라우팅 규칙 추가 화면](../media/routing-rule-listener-tab.png)
+    ![Azure Portal의 애플리케이션 게이트웨이 라우팅 규칙 추가 화면](../media/Routing-rule-listener-tab.png)
 
 20. **백 엔드 대상** 탭을 선택하여 나머지 라우팅 규칙을 구성합니다.
 
