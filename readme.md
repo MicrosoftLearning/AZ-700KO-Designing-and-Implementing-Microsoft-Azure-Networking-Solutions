@@ -1,4 +1,4 @@
-﻿# AZ-700: Microsoft Azure 네트워킹 솔루션 설계 및 구현 
+﻿# AZ-700: Microsoft Azure 네트워킹솔루션설계및구현 
 
 ## 환영 인사
 
