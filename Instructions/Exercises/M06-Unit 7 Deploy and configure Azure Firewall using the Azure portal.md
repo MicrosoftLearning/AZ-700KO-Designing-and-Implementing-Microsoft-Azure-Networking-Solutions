@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M06-단원 7 Azure Portal을 사용하여 Azure Firewall 배포 및 구성'
     module: '모듈 - 네트워크 보안 설계 및 구현'
@@ -59,7 +59,7 @@ Exercise:
 
    ![가상 네트워크 만들기 - 기본 사항 탭](../media/create-vnet-basics-for-azure-firewall.png)
 
-5. **다음: IP 주소**를 클릭합니다.
+5. **다음: IP 주소**를 클릭합니다. IPv4 주소 공간 10.0.0.0/16이 기본적으로 제공되지 않은 경우 입력합니다. 
 
 6. **서브넷 이름** 아래에서 **기본값**이라는 단어를 클릭합니다.
 

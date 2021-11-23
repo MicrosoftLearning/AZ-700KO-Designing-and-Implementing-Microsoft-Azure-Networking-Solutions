@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M07-단원 3 Azure PowerShell을 사용하여 Azure 프라이빗 엔드포인트 만들기'
     module: '모듈 - Azure 서비스에 대한 프라이빗 액세스 설계 및 구현'
@@ -18,11 +18,13 @@ Azure SQL 및 Azure Storage와 같은 다양한 종류의 Azure 서비스용으�
 
 - PremiumV2 계층 이상의 App Service 요금제가 Azure 구독에 배포된 Azure 웹앱
 
-1. Azure Portal에서 **Cloud Shell** 창 내의 **PowerShell** 세션을 엽니다.
+1. M07 폴더에서 parameters.json을 찾아 엽니다. 메모장에서 이 파일을 열고 "value" 줄을 찾습니다. "GEN-UNIQUE". GEN-UNIQUE 자리 표시자 문자열을 웹앱 이름으로 사용할 고유한 값으로 바꿉니다. 이 변경 내용을 저장합니다.
 
-2. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 template.json 및 parameters.json 파일을 업로드합니다.
+2. Azure Portal에서 **Cloud Shell** 창의 **PowerShell** 세션을 엽니다.
 
-3. 다음 ARM 템플릿을 배포하여 이 연습에 필요한 PremiumV2-tier Azure 웹앱을 만듭니다.
+3. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 template.json 및 parameters.json 파일을 업로드합니다.
+
+4. 다음 ARM 템플릿을 배포하여 이 연습에 필요한 PremiumV2-tier Azure 웹앱을 만듭니다.
 
    ```powershell
    $RGName = "CreatePrivateEndpointQS-rg"

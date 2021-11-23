@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M01-단원 8 전역 가상 네트워크 피어링을 사용해 Azure Virtual Network 2개 연결'
     module: '모듈 - Azure Virtual Network 소개'
@@ -49,7 +49,7 @@ Exercise:
 |                 | 다중 테넌트 호스팅 권한이 있는 적합한 Windows 10 라이선스가 있음을 확인합니다. | 선택됨                              |
 | 디스크           | 변경 불필요                                          |                                       |
 | 네트워킹      | 가상 네트워크                                              | ManufacturingVnet                     |
-|                 | 서브넷                                                       | DatabaseSubnet(10.30.10.0/24)        |
+|                 | 서브넷                                                       | ManufacturingSystemSubnet(10.30.10.0/24)|
 |                 | 공용 IP                                                    | (신규) ManufacturingVM-ip              |
 |                 | NIC 네트워크 보안 그룹                                   | 기본                                 |
 |                 | 공용 인바운드 포트                                         | 선택한 포트 허용                  |
