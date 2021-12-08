@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M08-단원 3 Azure Monitor를 사용하여 부하 분산 장치 리소스 모니터링'
     module: '모듈 - 네트워크 모니터링 설계 및 구현'
