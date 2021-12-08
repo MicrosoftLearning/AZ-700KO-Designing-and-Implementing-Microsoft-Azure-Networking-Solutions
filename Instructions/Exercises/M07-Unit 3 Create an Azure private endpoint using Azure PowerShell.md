@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M07-단원 3 Azure PowerShell을 사용하여 Azure 프라이빗 엔드포인트 만들기'
     module: '모듈 - Azure 서비스에 대한 프라이빗 액세스 설계 및 구현'
