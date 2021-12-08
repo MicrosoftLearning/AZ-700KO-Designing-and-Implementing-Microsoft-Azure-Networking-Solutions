@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M06-단원 4 Azure Portal을 사용하여 가상 네트워크에서 DDoS 보호 구성'
     module: '모듈 - 네트워크 보안 설계 및 구현'
