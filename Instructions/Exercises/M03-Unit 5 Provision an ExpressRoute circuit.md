@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M03-단원 5 ExpressRoute 회로 프로비전'
     module: '모듈 - Azure ExpressRoute 설계 및 구현'
@@ -34,9 +34,7 @@ ExpressRoute 회로를 만드는 방법의 데모를 시청하려면 [Azure Expr
 
    ![Azure Portal - ExpressRoute 회로 만들기 메뉴](../media/create-expressroute-circuit-menu.png)
 
-3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, West US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;** 을 선택합니다.
-
-   ![Azure Portal - ExpressRoute 만들기 기본 사항 탭](../media/expressroute-create-basic.png)
+3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, East US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;**을 선택합니다.
 
 4. 이 페이지의 값에 데이터를 입력할 때 올바른 SKU 계층(로컬, 표준 또는 프리미엄) 및 데이터 계량 청구 모델(제한 없음 또는 요금제)을 지정해야 합니다.
 
@@ -97,14 +95,12 @@ ExpressRoute 회로를 만드는 방법의 데모를 시청하려면 [Azure Expr
    - ExpressRoute 회로를 사용하려면 다음 상태여야 합니다.
      - 공급자 상태: 프로비전됨
      - 회로 상태: 사용
-   - 회로 키의 상태와 프로비전 상태를 주기적으로 확인해야 합니다.
-
-6. 원하는 회로를 선택하여 회로의 속성을 볼 수 있습니다. 계속 진행하기 전에 **공급자 상태**를 확인하여 상태가 **프로비전됨**으로 바뀌었는지 확인합니다.
+   - 회로 상태와 프로비전 상태를 주기적으로 확인해야 합니다.
 
 ![Azure Portal - 이제 상태가 프로비전됨으로 바뀌었음이 표시된 ExpressRoute 회로 속성](../media/provisioned.png)
 
  
-1. ExpressRoute 회로를 만들고 프로비전하는 방법을 보여 주는 다음 데모를 시청해 보세요. [Azure ExpressRoute - ExpressRoute 회로를 만드는 방법 | Azure | Channel 9(msdn.com)](https://channel9.msdn.com/Blogs/Azure/Azure-ExpressRoute-How-to-create-an-ExpressRoute-circuit?term=ExpressRoute&lang-en=true&pageSize=15&skip=15)을 참조하세요. 
+ExpressRoute 회로를 만들고 프로비전하는 방법을 보여 주는 다음 데모를 시청해 보세요. [Azure ExpressRoute - ExpressRoute 회로를 만드는 방법 | Azure | Channel 9(msdn.com)](https://channel9.msdn.com/Blogs/Azure/Azure-ExpressRoute-How-to-create-an-ExpressRoute-circuit?term=ExpressRoute&lang-en=true&pageSize=15&skip=15)을 참조하세요. 
 
 축하합니다! ExpressRoute 회로를 만들고 서비스 키를 찾았습니다. 회로 프로비전을 완료하려면 이 키가 필요합니다.
 
@@ -132,7 +128,8 @@ ExpressRoute 회로 서비스 공급자 프로비전 상태가 **프로비전 �
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+   Remove-AzResourceGroup -Name 'ContosoResourceGroup' -Force -AsJob
+   Remove-AzResourceGroup -Name 'ExpressRouteResourceGroup' -Force -AsJob
    ```
    >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.
 

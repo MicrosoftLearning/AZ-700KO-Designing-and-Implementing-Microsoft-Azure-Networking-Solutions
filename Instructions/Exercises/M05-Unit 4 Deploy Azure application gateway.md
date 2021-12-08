@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M05-단원 4 Azure Application Gateway 배포'
     module: '모듈 - Azure에서 HTTP(S) 트래픽 부하 분산'
@@ -37,7 +37,7 @@ Azure의 경우, 만든 리소스 사이에서 통신하기 위해서는 가상 
    | 구독        | 구독을 선택합니다.                    |
    | 리소스 그룹      | 새 ContosoResourceGroup 만들기를 선택합니다.       |
    | Application Gateway | ContosoAppGateway                            |
-   | 지역              | **미국 서부**를 선택합니다.                           |
+   | 지역              | **미국 동부**를 선택합니다.                           |
    | 가상 네트워크     | **새로 만들기**를 선택합니다.                        |
 
 5. 가상 네트워크 만들기에서 다음 정보를 입력하거나 선택합니다.
@@ -147,7 +147,7 @@ Azure에서 애플리케이션 게이트웨이를 만드는 데 몇 분 정도 �
    | 구독         | 구독을 선택합니다.                        |
    | 리소스 그룹       | ContosoResourceGroup을 선택합니다.                      |
    | 가상 머신 이름 | BackendVM1                                       |
-   | 이미지                | **Windows Server 2016 Datacenter - Gen1**을 선택합니다. |
+   | 이미지                | **Windows Server 2022 Datacenter - Gen1**을 선택합니다.  |
    | 사용자 이름             | TestUser                                         |
    | 암호             | TestPa$$w0rd                                     |
    | 공용 인바운드 포트 | 없음                                             |
@@ -192,7 +192,7 @@ Set-AzVMExtension `
 
  -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}' `
 
- -Location WestUS
+ -Location EastUS
 ```
 
 4. 앞에서 완료한 가상 머신 만들기 및 테스트용으로 IIS 설치 단계를 사용하여 두 번째 가상 머신을 만들고 IIS를 설치합니다. **Set-AzVMExtension** cmdlet의 **VMName** 설정과 가상 머신 이름으로는 BackendVM2를 사용합니다.

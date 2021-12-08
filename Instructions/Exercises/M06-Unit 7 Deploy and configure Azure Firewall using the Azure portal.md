@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M06-단원 7 Azure Portal을 사용하여 Azure Firewall 배포 및 구성'
     module: '모듈 - 네트워크 보안 설계 및 구현'
@@ -20,7 +20,7 @@ Exercise:
 + 작업 8: DNAT(대상 NAT) 규칙 구성
 + 작업 9: 서버 네트워크 인터페이스의 기본 및 보조 DNS 주소 변경
 + 작업 10: 방화벽 테스트
-
++ 작업 11: 리소스 정리
 
 
 ## 작업 1: 리소스 그룹 만들기
@@ -49,7 +49,7 @@ Exercise:
 
 이 작업에서는 서브넷 2개가 포함된 가상 네트워크 하나를 만듭니다.
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 선택하고 검색 상자에 **가상 네트워크**를 입력한 후 **가상 네트워크**가 표시되면 선택합니다.
+1. Azure Portal 홈 페이지에서 검색 상자에 **가상 네트워크**를 입력한 후 **가상 네트워크**가 표시되면 선택합니다.
 
 2. **만들기**를 클릭합니다.
 
@@ -69,17 +69,16 @@ Exercise:
 
 9. **저장**을 클릭합니다.
 
-   ![가상 네트워크 만들기 - 서브넷 편집](../media/edit-default-subnet-for-firewall.png)
-
 10. **서브넷 추가**를 클릭하여 다른 서브넷을 만듭니다. 이 서브넷은 잠시 후에 만들 워크로드 서버를 호스트합니다.
 
+
+    ![Add subnet](../media/add-workload-subnet.png)
+    
 11. **서브넷 편집** 대화 상자에서 이름을 **Workload-SN**으로 변경합니다.
 
 12. **서브넷 주소 범위**를 **10.0.2.0/24**로 변경합니다.
 
 13. **추가**를 클릭합니다.
-
-    ![Add subnet](../media/add-workload-subnet.png)
 
 14. **검토 + 만들기**를 클릭합니다.
 
@@ -91,7 +90,7 @@ Exercise:
 
 이 작업에서는 워크로드 가상 머신을 만들어 앞에서 만든 Workload-SN 서브넷에 배치합니다.
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 선택하고 검색 상자에 **가상 머신**을 입력한 후 **가상 머신**이 표시되면 선택합니다.
+1. Azure Portal 홈 페이지에서 검색 상자에 **가상 머신**을 입력한 후 **가상 머신**이 표시되면 선택합니다.
 
 2. **가상 머신** 페이지에서 **만들기**를 클릭합니다.
 
@@ -104,8 +103,8 @@ Exercise:
    | 가상 머신 이름 | **Srv-Work**                                                 |
    | 지역               | 사용자의 지역                                                  |
    | 가용성 옵션 | **인프라 중복이 필요하지 않습니다.**                    |
-   | 이미지                | **Windows Server 2016 Datacenter - Gen 1**                   |
-   | 크기                 | **모든 크기 보기**를 선택하고 목록에서 **B1s**를 선택한 다음 **선택**<br /><br />**(Standard_B1s - vCPU 1개, 1GiB 메모리(£8.60/month)를 선택합니다.** |
+   | 이미지                | **Windows Server 2022 Datacenter - Gen1**                     |
+   | 크기                 | **Standard_D2s_v3** - 2vcpus, 8GiB 메모리                    |
    | 사용자 이름             | **MyAdmin**                                                  |
    | 암호             | **TestPa$$w0rd!**                                            |
    | 암호 확인     | **TestPa$$w0rd!**                                            |
@@ -401,3 +400,16 @@ Exercise:
     ![Srv-work 서버의 RDP 세션 - microsoft.com에서 브라우저가 차단됨](../media/remote-desktop-connection-3.png)
 
  
+## 작업 11: 리소스 정리 
+
+>**참고**: 더 이상 사용하지 않는 새로 만든 Azure 리소스를 제거해야 합니다. 사용하지 않는 리소스를 제거하면 예상하지 못한 비용이 발생하지 않습니다.
+
+1. Azure Portal에서 **Cloud Shell** 창의 **PowerShell** 세션을 엽니다.
+
+1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
+
+   ```powershell
+   Remove-AzResourceGroup -Name 'Test-FW-RG' -Force -AsJob
+   ```
+
+    >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨), 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

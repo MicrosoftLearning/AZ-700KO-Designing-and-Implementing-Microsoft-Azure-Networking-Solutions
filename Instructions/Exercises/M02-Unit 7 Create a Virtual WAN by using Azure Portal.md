@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M02-단원 7 Azure Portal을 사용하여 Virtual WAN 만들기'
     module: '모듈 - 하이브리드 네트워킹 설계 및 구현'
@@ -108,7 +108,7 @@ Exercise:
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+   Remove-AzResourceGroup -Name 'ContosoResourceGroup' -Force -AsJob
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

@@ -1,10 +1,11 @@
----
+﻿---
 Exercise:
-    title: 'M08-단원 3 Azure Firewall Manager를 사용하여 가상 허브 보호'
+    title: 'M08-단원 3 Azure Monitor를 사용하여 부하 분산 장치 리소스 모니터링'
     module: '모듈 - 네트워크 모니터링 설계 및 구현'
 ---
 
-# M08-단원 3 Azure Firewall Manager를 사용하여 가상 허브 보호
+# M08-단원 3 Azure Monitor를 사용하여 부하 분산 장치 리소스 모니터링
+
 
 이 연습에서는 가상의 조직인 Contoso Ltd.용 내부 부하 분산 장치를 만듭니다. 그런 다음 Log Analytics 작업 영역을 만들고, Azure Monitor Insights를 사용해 내부 부하 분산 장치 관련 정보를 확인합니다. 또한 함수 종속성 뷰, 부하 분산 장치 리소스의 세부 메트릭, 그리고 부하 분산 장치 관련 리소스 상태 정보를 확인합니다. 그런 후에 마지막으로 직접 만든 Log Analytics 작업 영역으로 메트릭을 보내도록 부하 분산 장치의 진단 설정을 구성합니다. 
 
@@ -38,9 +39,9 @@ Exercise:
 
 1. Azure Portal에 로그인합니다.
 
-2. Azure Portal 홈 페이지에서 **리소스 만들기**, **네트워킹**을 차례로 클릭하고 **가상 네트워크**를 선택합니다(페이지에 이 리소스 종류가 표시되지 않으면 페이지 위쪽의 검색 상자를 사용하여 웹앱을 검색한 다음 선택합니다).
+2. Azure Portal 홈 페이지에서 **가상 네트워크**를 검색한 후 서비스에서 가상 네트워크를 선택합니다.
 
-3. **만들기**를 클릭합니다.
+3. **+ 만들기**를 클릭합니다.
 
    ![가상 네트워크 만들기](../media/create-virtual-network-1.png)
 
@@ -57,11 +58,11 @@ Exercise:
 
 6. **IP 주소** 탭의 **IPv4 주소 공간** 상자에 **10.1.0.0/16**을 입력합니다.
 
-7. **서브넷 이름** 아래에서 **기본값**이라는 단어를 선택합니다.
+7. 위 **서브넷 이름**에서 **+ 서브넷 추가**를 선택합니다.
 
-8. **서브넷 편집** 창에서 서브넷 이름으로는 **myBackendSubnet**을, 서브넷 주소 범위로는 **10.1.0.0/24**를 입력합니다.
+8. **서브넷 추가** 창에서 서브넷 이름으로는 **myBackendSubnet**을, 서브넷 주소 범위로는 **10.1.0.0/24**를 입력합니다.
 
-9. **저장**을 클릭합니다.
+9. **추가**를 클릭합니다.
 
 10. **다음: 보안**을 클릭합니다.
 
@@ -81,33 +82,33 @@ Exercise:
 
 이 섹션에서는 내부 표준 SKU 부하 분산 장치를 만듭니다. 이 연습에서 기본 SKU 부하 분산 장치가 아닌 표준 SKU 부하 분산 장치를 만드는 이유는, 부하 분산 장치의 표준 SKU 버전이 필요한 이후 연습에서 사용하기 위해서입니다.
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 클릭합니다.
+1. Azure Portal 홈 페이지에서 페이지 위쪽의 검색 상자에 **부하 분산 장치**를 입력하고 서비스에서 부하 분산 장치를 선택합니다.
 
-2. 페이지 위쪽의 검색 상자에 **부하 분산 장치**를 입력하고 **Enter** 키를 누릅니다(**참고:** 목록에서 항목을 선택하지 마세요).
-
-3. 페이지 아래쪽으로 스크롤하여 **부하 분산 장치**(이름 아래에 'Microsoft' 및 'Azure 서비스'가 표시된 항목)를 선택합니다.
-
-4. **만들기**를 클릭합니다.
+2. **만들기**를 클릭합니다.
 
    ![부하 분산 장치 만들기](../media/create-load-balancer-4.png)
 
-5. **기본 사항** 탭에서 다음 표의 정보를 사용하여 부하 분산 장치를 만듭니다.
+3. **기본 사항** 탭에서 다음 표의 정보를 사용하여 부하 분산 장치를 만듭니다.
 
    | **설정**           | **값**                |
    | --------------------- | ------------------------ |
+   | 기본 사항 탭            |                          | 
    | 구독          | 보유한 구독 선택 |
    | 리소스 그룹        | **IntLB-RG**             |
    | 이름                  | **myIntLoadBalancer**    |
    | 지역                | **(미국) 미국 서부**         |
-   | 유형                  | **내부**             |
    | SKU                   | **표준**             |
+   | 유형                  | **내부**             |
+   | 프런트 엔드 IP 구성 탭 | + 프런트 엔드 IP 구성 추가 |
    | 가상 네트워크       | **IntLB-VNet**           |
    | 서브넷                | **myBackendSubnet**      |
    | IP 주소 할당 | **동적**              |
 
-6. **검토 + 만들기**를 클릭합니다.
 
-7. **만들기**를 클릭합니다.
+4. **검토 + 만들기**를 클릭합니다.
+
+
+5. **만들기**를 클릭합니다.
 
 
 ## 작업 3: 백 엔드 풀 만들기
@@ -188,7 +189,7 @@ Exercise:
 
 1. Azure Portal에서 **Cloud Shell** 창 내의 **PowerShell** 세션을 엽니다.
 
-2. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 azuredeploy.json, azuredeploy.parameters.vm1.json, azuredeploy.parameters.vm2.json 및 azuredeploy.parameters.vm3.json 파일을 업로드합니다.
+2. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 원본 폴더 **F:\Allfiles\Exercises\M08**의 Cloud Shell 홈 디렉터리에 **azuredeploy.json**, **azuredeploy.parameters.vm1.json**, **azuredeploy.parameters.vm2.json** 및 **azuredeploy.parameters.vm3.json** 파일을 업로드합니다.
 
 3. 다음 ARM 템플릿을 배포하여 이 연습에 필요한 가상 네트워크, 서브넷 및 VM을 만듭니다.
 
@@ -199,6 +200,8 @@ Exercise:
    New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile azuredeploy.json -TemplateParameterFile azuredeploy.parameters.vm2.json
    New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile azuredeploy.json -TemplateParameterFile azuredeploy.parameters.vm3.json
    ```
+  
+    > **참고:** 배포를 완료하는 데는 몇 분 정도 걸립니다. 
 
 ## 작업 7: Add VMs to the backend pool
 
@@ -241,9 +244,9 @@ Exercise:
 
 ### 테스트 VM 만들기
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**, **컴퓨팅**을 차례로 클릭하고 **가상 머신**을 선택합니다(페이지에 이 리소스 종류가 표시되지 않으면 페이지 위쪽의 검색 상자를 사용하여 웹앱을 검색한 다음 선택합니다).
+1. Azure 홈 페이지에서 전역 검색을 사용하여 **가상 네트워크**를 입력하고 서비스에서 가상 머신을 선택합니다. 
 
-2. **가상 머신 만들기** 페이지의 **기본 사항** 탭에서 다음 표의 정보를 사용하여 첫 번째 VM을 만듭니다.
+2. **기본 사항** 탭에서 **+ 만들기, + 가상 머신**을 선택하고 다음 표의 정보를 사용하여 첫 번째 VM을 만듭니다.
 
    | **설정**          | **값**                                    |
    | -------------------- | -------------------------------------------- |
@@ -281,7 +284,7 @@ Exercise:
 
 1. Azure Portal 홈 페이지에서 **모든 리소스**를 클릭한 다음 리소스 목록에서 **myIntLoadBalancer**를 클릭합니다.
 
-2. **개요** 페이지에서 **개인 IP 주소**를 적어 두거나 클립보드에 복사합니다.
+2. **개요** 페이지에서 **개인 IP 주소**를 적어 두거나 클립보드에 복사합니다. 참고: **개인 IP 주소** 필드를 표시하려면 **자세히 보기**를 선택해야 할 수도 있습니다.
 
 3. **홈**을 클릭하고 Azure Portal 홈 페이지에서 **모든 리소스**를 클릭한 후에 방금 만든 **myTestVM** 가상 머신을 클릭합니다.
 
@@ -438,7 +441,7 @@ Exercise:
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+   Remove-AzResourceGroup -Name 'IntLB-RG' -Force -AsJob
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M07-단원 3 Azure PowerShell을 사용하여 Azure 프라이빗 엔드포인트 만들기'
     module: '모듈 - Azure 서비스에 대한 프라이빗 액세스 설계 및 구현'
@@ -24,13 +24,7 @@ Azure SQL 및 Azure Storage와 같은 다양한 종류의 Azure 서비스용으�
 
 3. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 template.json 및 parameters.json 파일을 업로드합니다.
 
-4. 다음 ARM 템플릿을 배포하여 이 연습에 필요한 PremiumV2-tier Azure 웹앱을 만듭니다.
 
-   ```powershell
-   $RGName = "CreatePrivateEndpointQS-rg"
-   
-   New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile template.json -TemplateParameterFile parameters.json
-   ```
 
 PowerShell을 로컬로 설치하고 사용하도록 선택하는 경우 이 예제의 작업을 실행하려면 Azure PowerShell 모듈 버전 5.4.1 이상이 필요합니다. ```Get-Module -ListAvailable Az```를 실행하여 설치된 버전을 확인합니다. 업그레이드해야 하는 경우 [Azure PowerShell 모듈 설치](https://docs.microsoft.com/ko-kr/azure/app-service/quickstart-dotnetcore)를 참조하세요. PowerShell을 로컬로 실행하는 경우에는 ```Connect-AzAccount```를 실행하여 Azure와 연결해야 합니다.
 
@@ -44,7 +38,7 @@ PowerShell을 로컬로 설치하고 사용하도록 선택하는 경우 이 예
 + 작업 6: 프라이빗 엔드포인트로의 연결 테스트
 + 작업 7: 리소스 정리
 
-## 작업 1: 리소스 그룹 만들기
+## 작업 1: 리소스 그룹을 만들고 필수 웹앱 배포
 
 Azure 리소스 그룹은 Azure 리소스를 배포하고 관리하는 논리적 컨테이너입니다.
 
@@ -53,7 +47,13 @@ Azure 리소스 그룹은 Azure 리소스를 배포하고 관리하는 논리적
 ```Azure PowerShell
 New-AzResourceGroup -Name 'CreatePrivateEndpointQS-rg' -Location 'eastus'
 ```
+다음 ARM 템플릿을 배포하여 이 연습에 필요한 PremiumV2-tier Azure 웹앱을 만듭니다.
 
+   ```powershell
+   $RGName = "CreatePrivateEndpointQS-rg"
+   
+   New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile template.json -TemplateParameterFile parameters.json
+   ```
 
 ## 작업 2: 가상 네트워크 및 베스천 호스트 만들기
 
@@ -142,7 +142,7 @@ New-AzBastion @parameters3
 
 - 다음을 사용하여 가상 머신을 만듭니다.
 
-- Get-Credential
+- Get-Credential(참고: VM의 로컬 관리자 계정 자격 증명(예: Student와 Pa55w.rd1234)을 입력하라는 메시지가 표시되면 입력하세요.)
 
 - New-AzNetworkInterface
 
@@ -211,9 +211,7 @@ $parameters4 = @{
 
 }
 
-$vmConfig = 
-
-New-AzVMConfig @parameters2 | Set-AzVMOperatingSystem -Windows @parameters3 | Set-AzVMSourceImage @parameters4 | Add-AzVMNetworkInterface -Id $nicVM.Id
+$vmConfig = New-AzVMConfig @parameters2 | Set-AzVMOperatingSystem -Windows @parameters3 | Set-AzVMSourceImage @parameters4 | Add-AzVMNetworkInterface -Id $nicVM.Id
 
 ## Create the virtual machine ##
 
@@ -389,9 +387,9 @@ New-AzPrivateDnsZoneGroup @parameters4
 
 - 연결한 후 서버에서 Windows PowerShell을 엽니다.
 
-- nslookup <your- webapp-name>.azurewebsites.net을 입력합니다. <your-webapp-name>은 이전 단계에서 만든 웹앱의 이름으로 바꿉니다. 아래 표시된 것과 유사한 메시지가 표시됩니다.
+- nslookup &lt;your- webapp-name&gt;.azurewebsites.net을 입력합니다. &lt;your-webapp-name&gt;은 이전 단계에서 만든 웹앱의 이름으로 바꿉니다. 아래 표시된 것과 유사한 메시지가 표시됩니다.
 
-  ```| Azure PowerShell |
+  ```
   Server: UnKnown
   
   Address: 168.63.129.16
@@ -402,8 +400,9 @@ New-AzPrivateDnsZoneGroup @parameters4
   
   Address: 10.0.0.5
   
-  Aliases: mywebapp8675.azurewebsites.net  
-  ```
+  Aliases: mywebapp8675.azurewebsites.net 
+  ```  
+
 
 웹앱 이름에 대해 개인 IP 주소 **10.0.0.5**가 반환됩니다. 이 주소는 이전에 만든 가상 네트워크의 서브넷에 있습니다.
 
@@ -418,7 +417,7 @@ New-AzPrivateDnsZoneGroup @parameters4
 프라이빗 엔드포인트 및 VM 사용을 마쳤으면 [Remove-AzResourceGroup](https://docs.microsoft.com/ko-kr/powershell/module/az.resources/remove-azresourcegroup)을 사용하여 리소스 그룹과 리소스 그룹에 포함된 모든 리소스를 제거합니다.
 
 ```Azure PowerShell
-Remove-AzResourceGroup -Name CreatePrivateEndpointQS-rg -Force
+Remove-AzResourceGroup -Name CreatePrivateEndpointQS-rg -Force -AsJob
 ```
 
 

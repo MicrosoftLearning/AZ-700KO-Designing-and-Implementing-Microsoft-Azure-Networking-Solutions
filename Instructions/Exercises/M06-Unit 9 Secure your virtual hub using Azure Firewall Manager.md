@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M06-단원 9 Azure Firewall Manager를 사용하여 가상 허브 보호'
     module: '모듈 - 네트워크 보안 설계 및 구현'
@@ -30,7 +30,7 @@ Exercise:
 
 이 작업에서는 스포크 가상 네트워크 2개를 만듭니다. 각 가상 네트워크는 워크로드 서버를 호스트할 서브넷을 포함합니다. 
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 선택하고 검색 상자에 **가상 네트워크**를 입력한 후 **가상 네트워크**가 표시되면 선택합니다.
+1. Azure Portal 홈 페이지에서 검색 상자에 **가상 네트워크**를 입력한 후 **가상 네트워크**가 표시되면 선택합니다.
 2. **만들기**를 클릭합니다.
 3. **리소스 그룹**에서 **새로 만들기**를 선택하고 이름으로 **fw-manager-rg**를 입력한 다음 **확인**을 클릭합니다.
 4. **이름**에 **Spoke-01**을 입력합니다.
@@ -61,7 +61,7 @@ Exercise:
 
 2. 검색 상자에 **firewall manager**를 입력하고 **Firewall Manager**가 표시되면 선택합니다.
 
-3. **Firewall Manager** 페이지에서 **보안 가상 허브 보기**를 클릭합니다.
+3. 개요 페이지의 **Firewall Manager** 페이지에서 **보안 가상 허브 보기**를 클릭합니다.
 
 4. **가상 허브** 페이지에서 **새 보안 가상 허브 만들기**를 클릭합니다.
 
@@ -130,9 +130,9 @@ Exercise:
 
 이 작업에서는 워크로드 서버 2개를 배포합니다.
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 클릭합니다.
+1. Azure 홈 페이지에서 전역 검색을 사용하여 **가상 네트워크**를 입력하고 서비스에서 가상 머신을 선택합니다.
 
-2. 인기 제품 목록에서 **Windows Server Datacenter 2019**를 선택합니다.
+2. 가상 머신에서 **+ 만들기, + 가상 머신**을 선택합니다.
 
 3. **가상 머신 만들기** 페이지의 **기본 사항** 탭에서 다음 표의 정보를 사용하여 새 VM을 만듭니다.
 
@@ -142,6 +142,9 @@ Exercise:
    | 리소스 그룹       | **fw-manager-rg**        |
    | 가상 머신 이름 | **Srv-workload-01**      |
    | 지역               | 사용자의 지역              |
+   | 가용성 옵션 | 인프라 중복 필요 없음|
+   | 이미지                | Windows Server 2022 Datacenter - Gen2 |
+   | Azure Spot 인스턴스  | 선택되지 않음             |
    | 사용자 이름             | **MyAdmin**              |
    | 암호             | **TestPa$$w0rd!**        |
    | 암호 확인     | **TestPa$$w0rd!**        |
@@ -194,7 +197,7 @@ Exercise:
 1. Azure Portal 홈 페이지에서 **Firewall Manager**를 클릭합니다.
    - 홈 페이지에 Firewall Manager 아이콘이 표시되지 않으면 **모든 서비스**를 클릭합니다. 그런 다음 검색 상자에 **firewall manager**를 입력하고 **Firewall Manager**가 표시되면 선택합니다.
 
-2. **Firewall Manager**에서 **Azure Firewall 정책 보기**를 클릭합니다.
+2. 개요 페이지의 **Firewall Manager**에서 **Azure Firewall 정책 보기**를 클릭합니다.
 
 3. **Azure Firewall 정책 만들기**를 클릭합니다.
 
@@ -403,7 +406,7 @@ Exercise:
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+   Remove-AzResourceGroup -Name 'fw-manager-rg' -Force -AsJob
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

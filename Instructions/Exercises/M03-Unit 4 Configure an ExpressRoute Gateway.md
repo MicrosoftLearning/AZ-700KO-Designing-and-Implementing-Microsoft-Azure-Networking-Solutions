@@ -1,4 +1,4 @@
----
+﻿---
 Exercise:
     title: 'M03-단원 4 ExpressRoute 게이트웨이 구성'
     module: '모듈 - Azure ExpressRoute 설계 및 구현'
@@ -38,7 +38,7 @@ ExpressRoute를 통해 Azure Virtual Network와 온-프레미스 네트워크를
    | -------------------- | -------------------------------- |
    | 가상 네트워크 이름 | CoreServicesVNet                 |
    | 리소스 그룹       | ContosoResourceGroup             |
-   | 위치             | 미국 서부                          |
+   | 위치             | 미국 동부                          |
 
 4. **다음: IP 주소**를 선택합니다.
 
@@ -75,9 +75,8 @@ ExpressRoute를 통해 Azure Virtual Network와 온-프레미스 네트워크를
    | 리소스 그룹            | ContosoResourceGroup       |
    | **인스턴스 세부 정보**      |                            |
    | 이름                      | CoreServicesVnetGateway    |
-   | 지역                    | 미국 서부                    |
+   | 지역                    | 미국 동부                    |
    | 게이트웨이 유형              | ExpressRoute               |
-   | VPN 유형                  | 경로 기반                |
    | SKU                       | 표준                   |
    | 가상 네트워크           | CoreServicesVNet           |
    | **공용 IP 주소**     |                            |
@@ -85,9 +84,7 @@ ExpressRoute를 통해 Azure Virtual Network와 온-프레미스 네트워크를
    | 공용 IP 주소 이름    | CoreServicesVnetGateway-IP |
    | 공용 IP 주소 SKU     | 기본                      |
    | 할당                | 구성할 수 없음           |
-   | active-active 모드 사용 | 사용 안 함                   |
-   | BGP 구성             | 사용 안 함                   |
-
+   
 3. **검토 + 만들기**를 선택합니다.
 
 4. 게이트웨이 구성이 유효성 검사를 통과하는지 확인하고 **만들기**를 선택합니다.
