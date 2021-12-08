@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M01-단원 6 Azure에서 DNS 설정 구성'
     module: '모듈 - Azure Virtual Network 소개'
