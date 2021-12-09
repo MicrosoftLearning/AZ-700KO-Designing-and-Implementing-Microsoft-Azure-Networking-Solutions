@@ -28,10 +28,9 @@ Exercise:
 
 1. [https://portal.azure.com](https://portal.azure.com/)에서 Azure Portal에 로그인합니다.
 
-2. Azure Portal 홈 페이지에서 + **리소스 만들기**를 선택합니다.
+2. Azure 홈 페이지에서 전역 검색을 사용하여 **WebApp**을 입력하고 서비스에서 **App Services**를 선택합니다.
 
-3. 리소스 만들기 페이지에서 **웹앱**을 선택합니다.
-   ![Azure Portal의 웹앱 만들기 화면 ](../media/create-a-web-app.png)
+3. **+ 만들기**를 클릭하여 웹앱을 만듭니다.
 
 4. 웹앱 만들기 페이지의 기본 사항 탭에서 다음 정보를 입력하거나 선택합니다.
 
@@ -41,7 +40,7 @@ Exercise:
    | 리소스 그룹   | 리소스 그룹 ContosoResourceGroup을 선택합니다.               |
    | 이름             | 웹앱의 고유한 이름을 입력합니다. 이 예제에서는 WebAppContoso-1을 사용합니다. |
    | 게시          | **코드**를 선택합니다.                                             |
-   | 런타임 스택    | **.NET Core 2.1(LTS)** 을 선택합니다.                              |
+   | 런타임 스택    | **[.NET Core 3.1(LTS)]** 을 선택합니다.                              |
    | 운영 체제 | **Windows**를 선택합니다.                                          |
    | 지역           | **미국 중부**를 선택합니다.                                       |
    | Windows 플랜     | **새로 만들기**를 선택하고 텍스트 상자에 myAppServicePlanCentralUS를 입력합니다. |
@@ -50,9 +49,9 @@ Exercise:
 5. **검토 + 만들기**를 선택하고 요약을 검토한 다음 **만들기**를 선택합니다.   
    ‎배포가 완료되는 데 몇 분 정도 걸릴 수 있습니다.
 
-6. 두 번째 웹앱을 만듭니다. Azure Portal 홈 페이지에서 + **리소스 만들기**를 선택합니다.
+6. 두 번째 웹앱을 만듭니다. Azure Portal 홈 페이지에서 **WebApp**을 검색합니다.
 
-7. 리소스 만들기 페이지에서 **웹앱**을 선택합니다.
+7. **+ 만들기**를 클릭하여 웹앱을 만듭니다.
 
 8. 웹앱 만들기 페이지의 **기본** 사항 탭에서 다음 정보를 입력하거나 선택합니다.
 
@@ -62,7 +61,7 @@ Exercise:
    | 리소스 그룹   | 리소스 그룹 ContosoResourceGroup을 선택합니다.               |
    | 이름             | 웹앱의 고유한 이름을 입력합니다. 이 예제에서는 WebAppContoso-2을 사용합니다. |
    | 게시          | **코드**를 선택합니다.                                             |
-   | 런타임 스택    | **.NET Core 2.1(LTS)** 을 선택합니다.                              |
+   | 런타임 스택    | **[.NET Core 3.1(LTS)]** 을 선택합니다.                              |
    | 운영 체제 | **Windows**를 선택합니다.                                          |
    | 지역           | **미국 동부**를 입력합니다.                                          |
    | Windows 플랜     | **새로 만들기**를 선택하고 텍스트 상자에 myAppServicePlanEastUS를 입력합니다. |
@@ -87,7 +86,7 @@ Exercise:
    | ----------------------- | -------------------------------------------- |
    | 구독            | 구독을 선택합니다.                    |
    | 리소스 그룹          | ContosoResourceGroup을 선택합니다.                  |
-   | 리소스 그룹 위치 | **미국 중부**를 선택합니다.                       |
+   | 리소스 그룹 위치 | 기본 설정 적용                       |
 
 4. **다음: 구성**을 선택합니다.
 
@@ -191,7 +190,9 @@ Front Door를 만들면 구성이 전역적으로 배포되는 데 몇 분 정�
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+
+   Remove-AzResourceGroup -Name 'ContosoResourceGroup' -Force -AsJob
+
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

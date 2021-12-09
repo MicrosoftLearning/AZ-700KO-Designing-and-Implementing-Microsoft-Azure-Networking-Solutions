@@ -23,30 +23,25 @@ Exercise:
 
 ### ManufacturingVM 만들기
 
-1. Azure 홈 페이지에서 가상 머신을 선택합니다.
-2. 가상 머신에서 **+ 추가 &gt; + 미리 설정된 구성으로 시작**을 선택합니다.
-   ![+ 추가 및 + 미리 설정된 구성으로 시작이 강조 표시된 가상 머신](../media/add-virtual-machine-preset.png)
+1. Azure 홈 페이지에서 전역 검색을 사용하여 **가상 네트워크**를 입력하고 서비스에서 가상 머신을 선택합니다.
 
-3. 워크로드에 맞는 권장 기본값 선택의 **워크로드 환경 선택** 아래에서 **개발/테스트**를 선택합니다.
+2. 가상 머신에서 **+ 만들기, + 가상 머신**을 선택합니다.
 
-4. **워크로드 유형 선택** 아래에서 **범용(D 시리즈)** 을 선택하고 **VM 계속 만들기**를 선택합니다.
-
-5. 다음 표의 정보를 사용하여 VM을 만듭니다.
+3. 다음 표의 정보를 사용하여 VM을 만듭니다.
 
 | **탭**         | **옵션**                                                   | **값**                             |
 | --------------- | ------------------------------------------------------------ | ------------------------------------- |
 | 기본 사항          | 리소스 그룹                                               | ContosoResourceGroup                  |
 |                 | 가상 머신 이름                                         | ManufacturingVM                       |
-|                 | 지역                                                       | (유럽) 북유럽                 |
+|                 | 지역                                                       | 서유럽                           |
 |                 | 가용성 옵션                                         | 인프라 중복이 필요하지 않습니다. |
-|                 | 이미지                                                        | Windows 10 Pro, 버전 20H2 - Gen 1  |
+|                 | 이미지                                                        | Windows Server 2022 Datacenter - Gen1  |
 |                 | Azure Spot 인스턴스                                          | 선택되지 않음                          |
-|                 | 크기                                                         | Standard_D2_v3 - vCPU 2개, 8GiB 메모리  |
+|                 | 크기                                                         | Standard_D2s_v3 - vCPU 2개, 8GiB 메모리 |
 |                 | 사용자 이름                                                     | TestUser                              |
 |                 | 암호                                                     | TestPa$$w0rd!                         |
 |                 | 공용 인바운드 포트                                         | 선택한 포트 허용                  |
 |                 | 인바운드 포트 선택                                         | RDP(3389)                            |
-|                 | 다중 테넌트 호스팅 권한이 있는 적합한 Windows 10 라이선스가 있음을 확인합니다. | 선택됨                              |
 | 디스크           | 변경 불필요                                          |                                       |
 | 네트워킹      | 가상 네트워크                                              | ManufacturingVnet                     |
 |                 | 서브넷                                                       | ManufacturingSystemSubnet(10.30.10.0/24)|
@@ -61,7 +56,7 @@ Exercise:
 | 검토 + 만들기 | 설정을 검토하고 만들기를 선택합니다.                       |                                       |
 
 
-6. 배포가 완료되면 **리소스로 이동**을 선택합니다.
+4. 배포가 완료되면 **리소스로 이동**을 선택합니다.
 
 ## 작업 2: RDP를 사용하여 테스트 VM에 연결
 
@@ -75,7 +70,7 @@ Exercise:
 
 5. 바탕 화면에 RDP 파일을 저장합니다.
 
-6. RDP 파일 및 VM을 만들 때 지정한 사용자 이름과 암호를 사용하여 ManufacturingVM에 연결합니다.
+6. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 ManufacturingVM에 연결합니다.
 
 7. Azure Portal 홈 페이지에서 **가상 머신**을 선택합니다.
 
@@ -87,7 +82,7 @@ Exercise:
 
 11. 바탕 화면에 RDP 파일을 저장합니다.
 
-12. RDP 파일 및 VM을 만들 때 지정한 사용자 이름과 암호를 사용하여 TestVM1에 연결합니다.
+12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 TestVM1에 연결합니다.
 
 13. 두 VM의 **디바이스의 개인 정보 설정 선택**에서 **수락**을 선택합니다.
 
@@ -174,12 +169,12 @@ Exercise:
 
    >**참고**: 더 이상 사용하지 않는 새로 만든 Azure 리소스를 제거해야 합니다. 사용하지 않는 리소스를 제거하면 예기치 않은 비용이 발생하지 않습니다.
 
-1. Azure Portal에서 **Cloud Shell** 창 내의 **PowerShell** 세션을 엽니다.
+1. Azure Portal에서 **Cloud Shell** 창의 **PowerShell** 세션을 엽니다. (필요한 경우 기본 설정을 사용하여 Cloud Shell 스토리지 만들기)
 
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+   Remove-AzResourceGroup -Name 'ContosoResourceGroup' -Force -AsJob
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

@@ -37,7 +37,7 @@ Exercise:
    | ---------------- | ------------------------------------------------------------ |
    | 구독     | 보유한 구독 선택                                     |
    | 리소스 그룹   | **새로 만들기**를 선택합니다.  이름: **Contoso-RG-TM1**             |
-   | 이름             | **ContosoWebAppEastUS**                                      |
+   | 이름             | **ContosoWebAppEastUSxx**(여기서 xx는 이름을 고유하게 만드는 귀하의 이니셜) |
    | 게시          | **코드**                                                     |
    | 런타임 스택    | **ASP.NET V4.8**                                             |
    | 운영 체제 | **Windows**                                                  |
@@ -61,7 +61,7 @@ Exercise:
    | **설정**    | **값**                                                    |
    | -------------- | ------------------------------------------------------------ |
    | 리소스 그룹 | **새로 만들기**를 선택합니다.  이름: **Contoso-RG-TM2**             |
-   | 이름           | **ContosoWebAppWestEurope**                                  |
+   | 이름           | **ContosoWebAppWestEuropexx**(여기서 xx는 이름을 고유하게 만드는 귀하의 이니셜)  |
    | 지역         | **서유럽**                                              |
    | Windows 플랜   | **새로 만들기**를 선택합니다.  이름: **ContosoAppServicePlanWestEurope** |
 
@@ -90,7 +90,7 @@ Exercise:
 
    | **설정**             | **값**                |
    | ----------------------- | ------------------------ |
-   | 이름                    | **Contoso-TMProfile**    |
+   | 이름                    | **Contoso-TMProfilexx**(여기서 xx는 이름을 고유하게 만드는 귀하의 이니셜) |
    | 라우팅 방법          | **우선 순위**             |
    | 구독            | 보유한 구독 선택 |
    | 리소스 그룹          | **Contoso-RG-TM1**       |
@@ -185,7 +185,9 @@ Exercise:
 1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
 
    ```powershell
-   Remove-AzResourceGroup -Name 'NAME OF THE RG' -Force -AsJob
+
+   Remove-AzResourceGroup -Name 'Contoso-RG-TM1' -Force -AsJob
+
    ```
 
     >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨) 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.

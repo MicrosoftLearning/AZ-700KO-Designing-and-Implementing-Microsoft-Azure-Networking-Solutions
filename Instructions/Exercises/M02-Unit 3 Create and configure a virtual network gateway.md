@@ -27,47 +27,41 @@ Exercise:
 
 1. Azure Portal에서 **Cloud Shell** 창 내의 **PowerShell** 세션을 엽니다.
 
-2. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 azuredeploy.json 및 azuredeploy.parameters.json 파일을 업로드합니다.
+2. Cloud Shell 창 도구 모음에서 파일 업로드/다운로드 아이콘을 선택하고 드롭다운 메뉴에서 업로드를 클릭합니다. 그런 다음 Cloud Shell 홈 디렉터리에 **azuredeploy.json** 및 **azuredeploy.parameters.json** 파일을 업로드합니다.
 
 3. 다음 ARM 템플릿을 배포하여 이 연습에 필요한 가상 네트워크 및 서브넷을 만듭니다.
 
    ```powershell
    $RGName = "ContosoResourceGroup"
    #create resource group if it doesnt exist
-   New-AzResourceGroup -Name $RGName -Location West US
+   New-AzResourceGroup -Name $RGName -Location East US
    New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile azuredeploy.json -TemplateParameterFile azuredeploy.parameters.json
    ```
 
 ## 작업 2: CoreServicesTestVM 만들기
 
-1. Azure 홈 페이지에서 **가상 머신**을 선택합니다.
+1. Azure 홈 페이지에서 전역 검색을 사용하여 **가상 네트워크**를 입력하고 서비스에서 가상 머신을 선택합니다.
 
-2. 가상 머신에서 **+ 추가** > **+ 미리 설정된 구성으로 시작**을 선택합니다.
-   ![+ 추가 및 + 미리 설정된 구성으로 시작이 강조 표시된 가상 머신](../media/add-virtual-machine-preset.png)
+2. 가상 머신에서 **+ 만들기, + 가상 머신**을 선택합니다.
 
-3. 워크로드에 맞는 권장 기본값 선택의 **워크로드 환경 선택** 아래에서 **개발/테스트**를 선택합니다.
-
-4. **워크로드 유형 선택** 아래에서 **범용(D 시리즈)** 을 선택하고 **VM 계속 만들기**를 선택합니다.
-
-5. 다음 표의 정보를 사용하여 VM을 만듭니다.
+3. 다음 표의 정보를 사용하여 VM을 만듭니다.
 
    | **탭**         | **옵션**                                                   | **값**                             |
    | --------------- | ------------------------------------------------------------ | ------------------------------------- |
    | 기본 사항          | 리소스 그룹                                               | ContosoResourceGroup                  |
    |                 | 가상 머신 이름                                         | CoreServicesTestVM                    |
-   |                 | 지역                                                       | (미국) 미국 서부                          |
+   |                 | 지역                                                       | 미국 동부                               |
    |                 | 가용성 옵션                                         | 인프라 중복이 필요하지 않습니다. |
-   |                 | 이미지                                                        | Windows 10 Pro, 버전 20H2 - Gen 1  |
+   |                 | 이미지                                                        | Windows Server 2022 Datacenter - Gen1  |
    |                 | Azure Spot 인스턴스                                          | 선택되지 않음                          |
-   |                 | 크기                                                         | Standard_D2_v3 - vCPU 2개, 8GiB 메모리  |
+   |                 | 크기                                                         | Standard_D2s_v3 - vCPU 2개, 8GiB 메모리 |
    |                 | 사용자 이름                                                     | TestUser                              |
    |                 | 암호                                                     | TestPa$$w0rd!                         |
    |                 | 공용 인바운드 포트                                         | 선택한 포트 허용                  |
    |                 | 인바운드 포트 선택                                         | RDP(3389)                            |
-   |                 | 다중 테넌트 호스팅 권한이 있는 적합한 Windows 10 라이선스가 있음을 확인합니다. | 선택됨                              |
    | 디스크           | 변경 불필요                                          |                                       |
    | 네트워킹      | 가상 네트워크                                              | CoreServicesVnet                      |
-   |                 | 서브넷                                                       | DatabaseSubnet(10.20.0.0/24)         |
+   |                 | 서브넷                                                       | DatabaseSubnet(10.20.20.0/24)        |
    |                 | 공용 IP                                                    | (신규) CoreServicesTestVM-ip           |
    |                 | NIC 네트워크 보안 그룹                                   | 기본                                 |
    |                 | 공용 인바운드 포트                                         | 선택한 포트 허용                  |
@@ -78,35 +72,29 @@ Exercise:
    | 태그            | 변경 불필요                                          |                                       |
    | 검토 + 만들기 | 설정을 검토하고 만들기를 선택합니다.                       |                                       |
 
-6. 배포가 완료되면 **리소스로 이동**을 선택합니다.
+4. 배포가 완료되면 **리소스로 이동**을 선택합니다.
 
 ## 작업 3: ManufacturingTestVM 만들기
 
-1. Azure 홈 페이지에서 **가상 머신**을 선택합니다.
+1. Azure 홈 페이지에서 전역 검색을 사용하여 **가상 네트워크**를 입력하고 서비스에서 가상 머신을 선택합니다.
 
-2. 가상 머신에서 **+ 추가** > **+ 미리 설정된 구성으로 시작**을 선택합니다.
-   ![+ 추가 및 + 미리 설정된 구성으로 시작이 강조 표시된 가상 머신](../media/add-virtual-machine-preset.png)
+2. 가상 머신에서 **+ 만들기, + 가상 머신**을 선택합니다.
 
-3. 워크로드에 맞는 권장 기본값 선택의 **워크로드 환경 선택** 아래에서 **개발/테스트**를 선택합니다.
-
-4. **워크로드 유형 선택** 아래에서 **범용(D 시리즈)** 을 선택하고 **VM 계속 만들기**를 선택합니다.
-
-5. 다음 표의 정보를 사용하여 VM을 만듭니다.
+3. 다음 표의 정보를 사용하여 VM을 만듭니다.
 
    | **탭**         | **옵션**                                                   | **값**                                 |
    | --------------- | ------------------------------------------------------------ | ----------------------------------------- |
    | 기본 사항          | 리소스 그룹                                               | ContosoResourceGroup                      |
    |                 | 가상 머신 이름                                         | ManufacturingTestVM                       |
-   |                 | 지역                                                       | (유럽) 북유럽                     |
+   |                 | 지역                                                       | 서유럽                               |
    |                 | 가용성 옵션                                         | 인프라 중복이 필요하지 않습니다.     |
-   |                 | 이미지                                                        | Windows 10 Pro, 버전 20H2 - Gen 1      |
+   |                 | 이미지                                                        | Windows Server 2022 Datacenter - Gen1      |
    |                 | Azure Spot 인스턴스                                          | 선택되지 않음                              |
-   |                 | 크기                                                         | Standard_D2_v3 - vCPU 2개, 8GiB 메모리      |
+   |                 | 크기                                                         | Standard_D2s_v3 - vCPU 2개, 8GiB 메모리     |
    |                 | 사용자 이름                                                     | TestUser                                  |
    |                 | 암호                                                     | TestPa$$w0rd!                             |
    |                 | 공용 인바운드 포트                                         | 선택한 포트 허용                      |
    |                 | 인바운드 포트 선택                                         | RDP(3389)                                |
-   |                 | 다중 테넌트 호스팅 권한이 있는 적합한 Windows 10 라이선스가 있음을 확인합니다. | 선택됨                                  |
    | 디스크           | 변경 불필요                                          |                                           |
    | 네트워킹      | 가상 네트워크                                              | ManufacturingVnet                         |
    |                 | 서브넷                                                       | ManufacturingSystemSubnet(10.40.40.0/24) |
@@ -120,7 +108,7 @@ Exercise:
    | 태그            | 변경 불필요                                          |                                           |
    | 검토 + 만들기 | 설정을 검토하고 **만들기**를 선택합니다.                   |                                           |
 
-6. 배포가 완료되면 **리소스로 이동**을 선택합니다.
+4. 배포가 완료되면 **리소스로 이동**을 선택합니다.
 
 ## 작업 4: RDP를 사용하여 테스트 VM에 연결
 
@@ -129,13 +117,13 @@ Exercise:
 3. **ManufacturingTestVM**에서 **연결 &gt; RDP**를 선택합니다.
 4. **ManufacturingTestVM | 연결**에서 **RDP 파일 다운로드**를 선택합니다.
 5. 바탕 화면에 RDP 파일을 저장합니다.
-6. RDP 파일 및 VM을 만들 때 지정한 사용자 이름과 암호를 사용하여 ManufacturingTestVM에 연결합니다.
+6. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 ManufacturingTestVM에 연결합니다.
 7. Azure Portal 홈 페이지에서 **가상 머신**을 선택합니다.
 8. **CoreServicesTestVM**을 선택합니다.
 9. **CoreServicesTestVM**에서 **연결 &gt; RDP**를 선택합니다.
 10. **CoreServicesTestVM | 연결**에서 **RDP 파일 다운로드**를 선택합니다.
 11. 바탕 화면에 RDP 파일을 저장합니다.
-12. RDP 파일 및 VM을 만들 때 지정한 사용자 이름과 암호를 사용하여 CoreServicesTestVM에 연결합니다.
+12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 CoreServicesTestVM에 연결합니다.
 13. 두 VM의 **디바이스의 개인 정보 설정 선택**에서 **수락**을 선택합니다.
 14. 두 VM의 **네트워크**에서 **예**를 선택합니다.
 15. CoreServicesTestVM에서 PowerShell을 열고 ipconfig 명령을 실행합니다.
@@ -173,7 +161,7 @@ Exercise:
    | 기본 사항          | 프로젝트 세부 정보   | 구독                                | 변경 불필요          |
    |                 |                   | ResourceGroup                               | ContosoResourceGroup         |
    |                 | 인스턴스 세부 정보  | 이름                                        | CoreServicesVnetGateway      |
-   |                 |                   | 지역                                      | 미국 서부                      |
+   |                 |                   | 지역                                      | 미국 동부                      |
    |                 |                   | 게이트웨이 유형                                | VPN                          |
    |                 |                   | VPN 유형                                    | 경로 기반                  |
    |                 |                   | SKU                                         | VpnGw1                       |
@@ -204,7 +192,7 @@ Exercise:
    | 기본 사항          | 프로젝트 세부 정보   | 구독                                | 변경 불필요          |
    |                 |                   | ResourceGroup                               | ContosoResourceGroup         |
    |                 | 인스턴스 세부 정보  | 이름                                        | ManufacturingVnetGateway     |
-   |                 |                   | 지역                                      | 북유럽                 |
+   |                 |                   | 지역                                      | 서유럽                  |
    |                 |                   | 게이트웨이 유형                                | VPN                          |
    |                 |                   | VPN 유형                                    | 경로 기반                  |
    |                 |                   | SKU                                         | VpnGw1                       |
@@ -250,9 +238,9 @@ Exercise:
    | IKE 프로토콜                   | IKEv2                             |
    | 구독                   | 변경 불필요               |
    | 리소스 그룹                 | 변경 불필요               |
-   | 위치                       | 미국 서부                           |
+   | 위치                       | 미국 동부                           |
 
-5. 연결을 만들려면 **만들기**를 선택합니다.
+5. 연결을 만들려면 **확인**을 선택합니다.
    
 
 ## 작업 9: ManufacturingVnet을 CoreServicesVnet에 연결
@@ -277,10 +265,9 @@ Exercise:
    | IKE 프로토콜                   | IKEv2                             |
    | 구독                   | 변경 불필요               |
    | 리소스 그룹                 | 변경 불필요               |
-   | 위치                       | 북유럽                      |
-   |                                |                                   |
+   | 위치                       | 서유럽                       |
 
-5. 연결을 만들려면 **만들기**를 선택합니다.
+5. 연결을 만들려면 **확인**을 선택합니다.
 
 ## 작업 10: 연결이 정상적으로 설정되는지 확인 
 

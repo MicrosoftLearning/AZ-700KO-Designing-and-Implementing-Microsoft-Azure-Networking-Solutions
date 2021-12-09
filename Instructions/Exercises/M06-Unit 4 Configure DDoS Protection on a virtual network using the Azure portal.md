@@ -17,6 +17,7 @@ Exercise:
 + 작업 5: DDoS 진단 로그 구성
 + 작업 6: DDoS 경고 구성
 + 작업 7: DDoS 서비스 요청을 제출하여 DDoS 공격 실행
++ 작업 8: 리소스 정리
 
 
 
@@ -30,11 +31,11 @@ Exercise:
 
 4. **기본 사항** 탭의 **리소스 그룹**에 **MyResourceGroup**을 입력합니다.
 
+   ![리소스 그룹 만들기](../media/create-resource-group-ddos-protection-plan.png)
+
 5. **지역**의 목록에서 사용자의 지역을 선택합니다.
 
 6. **검토 + 만들기**를 클릭합니다.
-
-   ![리소스 그룹 만들기](../media/create-resource-group-ddos-protection-plan.png)
 
 7. **만들기**를 클릭합니다.
 
@@ -44,11 +45,9 @@ Exercise:
 
 ## 작업 2: DDoS 보호 계획 만들기
 
-1. Azure Portal 홈 페이지에서 **리소스 만들기**를 선택하고 검색 상자에 **DDoS**를 입력한 후 **DDoS 보호 계획**이 표시되면 클릭합니다.
+1. Azure Portal 홈 페이지의 검색 상자에 **DDoS**를 입력한 후 **DDoS 보호 계획**이 표시되면 클릭합니다.
 
-   ![DDoS 보호 계획 작성 시작 위치](../media/create-ddos-protection-plan-start.png)
-
-2. **만들기**를 클릭합니다.
+2. **+ 만들기**를 클릭합니다.
 
 3. **기본 사항** 탭의 **리소스 그룹** 목록에서 방금 만든 리소스 그룹을 선택합니다.
 
@@ -102,7 +101,7 @@ Exercise:
 
 5. **IP 주소 할당**에서 **정적**을 선택합니다.
 
-6. **DNS 이름 레이블**에 **mypublicdns**를 입력합니다.
+6. **DNS 이름 레이블**에 **mypublicdnsxx**를 입력합니다(여기서 xx는 이름을 고유하게 만드는 귀하의 이니셜).
 
 7. 목록에서 리소스 그룹을 선택합니다.
 
@@ -173,8 +172,8 @@ Exercise:
    | 가상 머신 이름  | **MyVirtualMachine**                                         |
    | 지역                | 사용자의 지역                                                  |
    | 가용성 옵션  | **인프라 중복이 필요하지 않습니다.**                   |
-   | 이미지                 | **Ubuntu Server 18.04 LTS - Gen 1**                         |
-   | 크기                  | **모든 크기 보기**를 선택하고 목록에서 **B1ls**를 선택한 다음 **선택** **(Standard_B1ls - vCPU 1개, 0.5GiB 메모리(£3.21/월)** 를 선택합니다. |
+   | 이미지                 | **Ubuntu Server 18.04 LTS - Gen 1**(필요한 경우 VM 세대 구성 링크 선택) |                     
+   | 크기                  | **모든 크기 보기**를 선택하고 목록에서 **B1ls**를 선택한 다음 **선택** **(Standard_B1ls - vCPU 1개, 0.5GiB 메모리)** 을 선택합니다. |
    | 인증 유형   | **SSH 공개 키**                                           |
    | 사용자 이름              | **azureuser**                                                |
    | SSH 공개 키 원본 | **새 키 쌍 생성**                                    |
@@ -199,7 +198,7 @@ Exercise:
 
 1. 새 가상 머신의 **개요** 페이지 **설정** 아래에서 **네트워킹**을 클릭합니다.
 
-2. **네트워크 인터페이스** 옆의 **myvirtualmachine**xxx(예: myvirtualmachine892)를 클릭합니다.
+2. **네트워크 인터페이스** 옆의 **myvirtualmachine**(예: myvirtualmachine892)를 클릭합니다.
 
 3. **설정** 아래에서 **IP 구성**을 클릭합니다.
 
@@ -255,7 +254,8 @@ Exercise:
 
 1. [BreakingPoint Cloud](https://breakingpoint.cloud/)에서 계정을 만듭니다.
 
-2. 아래 스크린샷의 설정에 따라 DDoS 테스트를 설정합니다. 이때 **대상 IP 주소** 상자에는 사용자의 **MyPublicIPAddress** 리소스의 IP 주소(예: **51.140.137.219**)를 지정합니다.
+2. 아래 스크린샷의 설정에 따라 DDoS 테스트를 설정합니다(평가판 계정으로 100k pps 테스트 크기를 선택해야 할 수 있음). 이때 **대상 IP 주소** 상자에는 사용자의 **MyPublicIPAddress** 리소스의 IP 주소(예: **51.140.137.219**)를 지정합니다.
+   ![DDOSAttack](https://user-images.githubusercontent.com/46939028/138599420-58bef33a-2597-4fa2-919f-bf1614037bc3.JPG)
 
    ![DDoS 테스트 설정](../media/ddos-test-setup.png)
 
@@ -265,8 +265,21 @@ Exercise:
 
 5. **메트릭** 상자의 목록에서 **DDoS 공격 여부**를 선택합니다.
 
-6. 그러면 발생한 DDoS 공격을 확인할 수 있습니다.
+6. 그러면 발생한 DDoS 공격을 확인할 수 있습니다. 결과가 표시되기까지 10분 정도 걸릴 수 있습니다.
 
    ![DDoS 공격을 받은 리소스를 보여 주는 메트릭](../media/metrics-showing-resource-under-attack.png)
 
  
+## 작업 8: 리소스 정리
+
+>**참고**: 더 이상 사용하지 않는 새로 만든 Azure 리소스를 제거해야 합니다. 사용하지 않는 리소스를 제거하면 예상하지 못한 비용이 발생하지 않습니다.
+
+1. Azure Portal에서 **Cloud Shell** 창의 **PowerShell** 세션을 엽니다.
+
+1. 다음 명령을 실행하여 이 모듈의 전체 랩에서 만든 모든 리소스 그룹을 삭제합니다.
+
+   ```powershell
+   Remove-AzResourceGroup -Name 'MyResourceGroup' -Force -AsJob
+   ```
+
+    >**참고**: 명령은 비동기적으로 실행되므로(-AsJob 매개 변수에 의해 결정됨), 동일한 PowerShell 세션 내에서 즉시 다른 PowerShell 명령을 실행할 수 있지만 리소스 그룹이 실제로 제거되기까지 몇 분 정도 걸릴 것입니다.
