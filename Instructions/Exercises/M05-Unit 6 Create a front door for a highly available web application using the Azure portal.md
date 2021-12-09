@@ -1,4 +1,4 @@
-﻿---
+---
 Exercise:
     title: 'M05-단원 6 Azure Portal을 사용하여 고가용성 웹 애플리케이션용 Front Door 만들기'
     module: '모듈 - Azure에서 HTTP(S) 트래픽 부하 분산'
