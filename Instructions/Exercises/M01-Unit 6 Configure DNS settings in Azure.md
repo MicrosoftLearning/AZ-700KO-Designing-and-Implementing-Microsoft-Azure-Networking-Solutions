@@ -217,9 +217,9 @@ Exercise:
 
 10. 바탕 화면에 RDP 파일을 저장합니다.
 
-11. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!**를 사용하여 TestVM1에 연결합니다.
+11. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 TestVM1에 연결합니다.
 
-12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!**를 사용하여 TestVM2에 연결합니다.
+12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 TestVM2에 연결합니다.
 
 13. 두 VM의 **디바이스의 개인 정보 설정 선택**에서 **수락**을 선택합니다.
 

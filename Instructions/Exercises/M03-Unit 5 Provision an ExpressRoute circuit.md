@@ -34,7 +34,7 @@ ExpressRoute 회로를 만드는 방법의 데모를 시청하려면 [Azure Expr
 
    ![Azure Portal - ExpressRoute 회로 만들기 메뉴](../media/create-expressroute-circuit-menu.png)
 
-3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, East US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;**을 선택합니다.
+3. **ExpressRoute 만들기** 페이지에서 회로의 **리소스 그룹**, **지역** 및 **이름**을 다음과 같이 입력합니다. ExpressRouteResourceGroup, East US 2, TestERCircuit. 그런 후에 **다음: 구성 &gt;** 을 선택합니다.
 
 4. 이 페이지의 값에 데이터를 입력할 때 올바른 SKU 계층(로컬, 표준 또는 프리미엄) 및 데이터 계량 청구 모델(제한 없음 또는 요금제)을 지정해야 합니다.
 

@@ -117,13 +117,13 @@ Exercise:
 3. **ManufacturingTestVM**에서 **연결 &gt; RDP**를 선택합니다.
 4. **ManufacturingTestVM | 연결**에서 **RDP 파일 다운로드**를 선택합니다.
 5. 바탕 화면에 RDP 파일을 저장합니다.
-6. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!**를 사용하여 ManufacturingTestVM에 연결합니다.
+6. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 ManufacturingTestVM에 연결합니다.
 7. Azure Portal 홈 페이지에서 **가상 머신**을 선택합니다.
 8. **CoreServicesTestVM**을 선택합니다.
 9. **CoreServicesTestVM**에서 **연결 &gt; RDP**를 선택합니다.
 10. **CoreServicesTestVM | 연결**에서 **RDP 파일 다운로드**를 선택합니다.
 11. 바탕 화면에 RDP 파일을 저장합니다.
-12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!**를 사용하여 CoreServicesTestVM에 연결합니다.
+12. RDP 파일, 사용자 이름 **TestUser** 및 암호 **TestPa$w0rd!** 를 사용하여 CoreServicesTestVM에 연결합니다.
 13. 두 VM의 **디바이스의 개인 정보 설정 선택**에서 **수락**을 선택합니다.
 14. 두 VM의 **네트워크**에서 **예**를 선택합니다.
 15. CoreServicesTestVM에서 PowerShell을 열고 ipconfig 명령을 실행합니다.
